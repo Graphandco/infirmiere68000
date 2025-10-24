@@ -4,13 +4,12 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-   --background: hsl(352, 54%, 85%);
+   --background: hsl(352, 54%, 75%);
    --background-light: hsl(352, 54%, 90%);
    --foreground: hsl(353, 68%, 25%);
    --accent: hsl(353, 68%, 85%);
    --accent-dark: hsl(353, 68%, 80%);
    --radius: 0.625rem;
-   --background: oklch(1 0 0);
    --foreground: oklch(0.145 0 0);
    --card: oklch(1 0 0);
    --card-foreground: oklch(0.145 0 0);

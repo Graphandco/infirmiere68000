@@ -5,7 +5,6 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 // import { SiMinutemailer } from "react-icons/si";
 import { AnimatePresence, motion } from "framer-motion";
-import FadeInOnView from "@/components/FadeInOnView";
 // import { CheckCircleIcon } from "lucide-react";
 import Link from "next/link";
 
@@ -66,7 +65,7 @@ export default function ContactForm() {
                // onSubmit={testSubmit}
                className="max-w-xl w-full bg-white p-5 sm:p-10 rounded-lg grid items-center"
             >
-               <FadeInOnView className="space-y-8">
+               <div className="space-y-8">
                   <div className="pb-0 mb-0">
                      <label htmlFor="name" className="sr-only">
                         Votre nom
@@ -174,7 +173,7 @@ export default function ContactForm() {
                   >
                      {isSubmitting ? "Envoi en cours..." : "Envoyer"}
                   </Button>
-               </FadeInOnView>
+               </div>
             </motion.form>
          )}
       </AnimatePresence>
