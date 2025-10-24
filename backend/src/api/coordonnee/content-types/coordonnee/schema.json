@@ -1,0 +1,27 @@
+{
+  "kind": "singleType",
+  "collectionName": "coordonnees",
+  "info": {
+    "singularName": "coordonnee",
+    "pluralName": "coordonnees",
+    "displayName": "Coordonnées"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "adresse": {
+      "type": "string"
+    },
+    "ville": {
+      "type": "string"
+    },
+    "telephone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    }
+  }
+}
