@@ -1,10 +1,22 @@
-import { getStrapiUnique } from "@/actions/getStrapiUnique";
+"use client";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "./Navbar";
+import MobileMenu from "./MobileMenu";
 import { Menu, Phone } from "lucide-react";
-export default async function Header() {
-   const coords = await getStrapiUnique({ type: "coordonnee" });
+
+export default function Header({ coords }) {
+   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+   const handleMenuToggle = () => {
+      setIsMenuOpen(!isMenuOpen);
+   };
+
+   const handleMenuClose = () => {
+      setIsMenuOpen(false);
+   };
+
    return (
       <header className="mb-4 sm:mb-8 md:mb-12 lg:mb-16">
          <div className="fixed h-10 top-0 left-0 w-full flex items-center justify-between md:hidden bg-black text-white px-4">
@@ -15,8 +27,15 @@ export default async function Header() {
                <Phone size={18} className="cursor-pointer" />
                <span className="text-sm">{coords.telephone}</span>
             </Link>
-            <Menu size={24} className="cursor-pointer" />
+            <button
+               onClick={handleMenuToggle}
+               className="p-1 hover:bg-white/10 rounded transition-colors"
+               aria-label="Ouvrir le menu"
+            >
+               <Menu size={24} className="cursor-pointer" />
+            </button>
          </div>
+         <MobileMenu isOpen={isMenuOpen} onClose={handleMenuClose} />
          <div className="wrapper mt-10 md:mt-0 py-4 grid  md:grid-cols-[1fr_auto_1fr] items-center">
             <div>
                <Link href="/" className="flex items-center gap-2">

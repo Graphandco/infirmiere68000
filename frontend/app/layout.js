@@ -1,6 +1,6 @@
 import { Montserrat } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
+import HeaderWrapper from "@/components/HeaderWrapper";
 import Footer from "@/components/Footer";
 
 const montserrat = Montserrat({
@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
             className={`${montserrat.variable} antialiased relative isolate after:content-[''] after:fixed after:top-0 after:left-0 after:w-full after:h-full after:bg-gradient-to-b after:from-background-light after:to-background after:-z-10`}
             suppressHydrationWarning={true}
          >
-            <Header />
+            <HeaderWrapper />
             <main className="min-h-screen">{children}</main>
             <Footer />
          </body>
