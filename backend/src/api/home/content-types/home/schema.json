@@ -16,6 +16,38 @@
     },
     "hero_description": {
       "type": "text"
+    },
+    "hero_image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "meta_title": {
+      "type": "text"
+    },
+    "meta_description": {
+      "type": "text"
+    },
+    "presentation_title": {
+      "type": "string"
+    },
+    "presentation_description": {
+      "type": "richtext"
+    },
+    "presentation_image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }

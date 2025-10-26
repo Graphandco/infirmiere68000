@@ -17,6 +17,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
    return (
       <html lang="fr">
+         <head>
+            <link rel="manifest" href="/manifest.json" />
+            <link rel="icon" href="/logo512.png" />
+            <meta name="theme-color" content="#ffffff" />
+         </head>
          <body
             className={`${montserrat.variable} antialiased relative isolate after:content-[''] after:fixed after:top-0 after:left-0 after:w-full after:h-full after:bg-gradient-to-b after:from-background-light after:to-background after:-z-10`}
             suppressHydrationWarning={true}

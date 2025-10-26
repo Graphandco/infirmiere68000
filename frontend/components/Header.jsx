@@ -17,6 +17,13 @@ export default function Header({ coords }) {
       setIsMenuOpen(false);
    };
 
+   const links = [
+      { href: "/", label: "Accueil" },
+      { href: "/cabinet", label: "Le cabinet" },
+      { href: "/soins", label: "Soins" },
+      { href: "/contact", label: "Contact" },
+   ];
+
    return (
       <header className="mb-4 sm:mb-8 md:mb-12 lg:mb-16">
          <div className="fixed h-10 top-0 left-0 w-full flex items-center justify-between md:hidden bg-black text-white px-4">
@@ -35,7 +42,11 @@ export default function Header({ coords }) {
                <Menu size={24} className="cursor-pointer" />
             </button>
          </div>
-         <MobileMenu isOpen={isMenuOpen} onClose={handleMenuClose} />
+         <MobileMenu
+            isOpen={isMenuOpen}
+            onClose={handleMenuClose}
+            links={links}
+         />
          <div className="wrapper mt-10 md:mt-0 py-4 grid  md:grid-cols-[1fr_auto_1fr] items-center">
             <div>
                <Link href="/" className="flex items-center gap-2">
@@ -50,7 +61,7 @@ export default function Header({ coords }) {
                   </div>
                </Link>
             </div>
-            <Navbar />
+            <Navbar links={links} />
             <div className="hidden md:flex flex-col items-end text-black text-sm">
                <span>64 Rue Robert Schuman</span>
                <span>68000 Colmar</span>

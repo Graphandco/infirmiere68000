@@ -2,16 +2,8 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
 
-export default function MobileMenu({ isOpen, onClose }) {
-   const links = [
-      { href: "/", label: "Accueil" },
-      { href: "/cabinet", label: "Le cabinet" },
-      { href: "/soins", label: "Soins" },
-      { href: "/contact", label: "Contact" },
-   ];
-
+export default function MobileMenu({ isOpen, onClose, links }) {
    return (
       <AnimatePresence>
          {isOpen && (
@@ -28,7 +20,7 @@ export default function MobileMenu({ isOpen, onClose }) {
 
                {/* Menu Panel */}
                <motion.div
-                  className="fixed top-0 right-0 h-full w-full max-w-sm bg-white z-50 shadow-2xl"
+                  className="fixed top-0 right-0 h-full w-full max-w-sm bg-gradient-to-b from-background-light to-background z-50 shadow-2xl"
                   initial={{ x: "100%" }}
                   animate={{ x: 0 }}
                   exit={{ x: "100%" }}
@@ -57,17 +49,17 @@ export default function MobileMenu({ isOpen, onClose }) {
                            <motion.li
                               key={link.href}
                               initial={{ opacity: 0, x: 20 }}
-                              animate={{ 
-                                 opacity: 1, 
+                              animate={{
+                                 opacity: 1,
                                  x: 0,
-                                 transition: { delay: index * 0.1 }
+                                 transition: { delay: index * 0.1 },
                               }}
                               exit={{ opacity: 0, x: 20 }}
                            >
                               <Link
                                  href={link.href}
                                  onClick={onClose}
-                                 className="block py-3 px-4 text-lg font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
+                                 className="block py-3 px-4 text-lg font-semibold text-black hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
                               >
                                  {link.label}
                               </Link>
@@ -78,12 +70,12 @@ export default function MobileMenu({ isOpen, onClose }) {
 
                   {/* Contact Info */}
                   <motion.div
-                     className="absolute bottom-0 left-0 right-0 p-6 border-t bg-gray-50"
+                     className="absolute bottom-0 left-0 right-0 p-6 border-t"
                      initial={{ opacity: 0, y: 20 }}
-                     animate={{ 
-                        opacity: 1, 
+                     animate={{
+                        opacity: 1,
                         y: 0,
-                        transition: { delay: 0.4 }
+                        transition: { delay: 0.4 },
                      }}
                      exit={{ opacity: 0, y: 20 }}
                   >
@@ -96,7 +88,8 @@ export default function MobileMenu({ isOpen, onClose }) {
                            06 12 34 56 78
                         </Link>
                         <p className="text-sm text-gray-500 mt-1">
-                           64 Rue Robert Schuman<br />
+                           64 Rue Robert Schuman
+                           <br />
                            68000 Colmar
                         </p>
                      </div>

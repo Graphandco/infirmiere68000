@@ -4,13 +4,13 @@ import { Button } from "@/components/ui/button";
 import FadeInOnView from "@/components/ui/FadeInOnView";
 
 export default function Hero({ hero }) {
-   const { hero_title, hero_description } = hero;
+   const { hero_title, hero_description, hero_image } = hero;
 
    return (
-      <FadeInOnView className="flex flex-col sm:flex-row items-center gap-8">
-         <div className="w-[90%] sm:w-[300px] md:w-[400px] lg:w-[550px]">
+      <FadeInOnView className="wrapper flex flex-col sm:flex-row items-center gap-5 sm:gap-10 md:gap-20">
+         <div className="w-[90%] sm:w-[300px] md:w-[400px] lg:w-[450px] mx-auto">
             <Image
-               src="/hero.svg"
+               src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${hero_image?.url}`}
                alt="Hero"
                width={550}
                height={550}
@@ -24,7 +24,7 @@ export default function Hero({ hero }) {
             </h1>
             <p className="text-black">{hero_description}</p>
             <Link href="/contact">
-               <Button>Contactez-nous</Button>
+               <Button size="lg">Contactez-nous</Button>
             </Link>
          </div>
       </FadeInOnView>

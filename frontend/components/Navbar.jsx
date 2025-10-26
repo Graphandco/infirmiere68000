@@ -4,18 +4,11 @@ import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 
-export default function Navbar() {
+export default function Navbar({ links }) {
    const pathname = usePathname();
    const [hoveredIndex, setHoveredIndex] = useState(null);
    const [isInitialized, setIsInitialized] = useState(false);
    const linkRefs = useRef([]);
-
-   const links = [
-      { href: "/", label: "Accueil" },
-      { href: "/cabinet", label: "Le cabinet" },
-      { href: "/soins", label: "Soins" },
-      { href: "/contact", label: "Contact" },
-   ];
 
    // Trouver l'index du lien actif
    const activeIndex = links.findIndex((link) => pathname === link.href);
@@ -75,8 +68,8 @@ export default function Navbar() {
                      isActive
                         ? "text-black"
                         : isHovered
-                        ? "text-black"
-                        : "text-black"
+                          ? "text-black"
+                          : "text-black"
                   }`}
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
