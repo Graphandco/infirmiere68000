@@ -2,7 +2,7 @@
    "name": "Infirmière 68000",
    "short_name": "Infirmière 68000",
    "description": "Infirmières libérales diplômées d’État et conventionnées pour vos soins sur prescription médicale.",
-   "theme_color": "##f3bfc5;",
+   "theme_color": "#f3bfc5",
    "background_color": "#FFFFFF",
    "display": "standalone",
    "scope": "/",

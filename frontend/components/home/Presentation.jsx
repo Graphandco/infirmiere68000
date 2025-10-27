@@ -8,7 +8,6 @@ import Link from "next/link";
 export default function Presentation({ presentation }) {
    const { presentation_title, presentation_description, presentation_image } =
       presentation;
-   console.log(presentation_description);
    return (
       <section id="presentation" className="my-10 md:my-15 lg:my-25">
          <div className="wrapper ">

@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "page_soins",
+  "info": {
+    "singularName": "page-soin",
+    "pluralName": "page-soins",
+    "displayName": "Page soins"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "soins_description": {
+      "type": "richtext"
+    }
+  }
+}

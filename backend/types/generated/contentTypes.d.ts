@@ -430,6 +430,35 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCabinetCabinet extends Struct.SingleTypeSchema {
+  collectionName: 'cabinets';
+  info: {
+    displayName: 'Page cabinet';
+    pluralName: 'cabinets';
+    singularName: 'cabinet';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    equipe_description: Schema.Attribute.RichText;
+    equipe_title: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::cabinet.cabinet'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiCoordonneeCoordonnee extends Struct.SingleTypeSchema {
   collectionName: 'coordonnees';
   info: {
@@ -461,10 +490,46 @@ export interface ApiCoordonneeCoordonnee extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiEquipeEquipe extends Struct.CollectionTypeSchema {
+  collectionName: 'equipes';
+  info: {
+    displayName: "L'\u00E9quipe";
+    pluralName: 'equipes';
+    singularName: 'equipe';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::equipe.equipe'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    order: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    publishedAt: Schema.Attribute.DateTime;
+    sex: Schema.Attribute.Enumeration<['homme', 'femme']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'femme'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiHomeHome extends Struct.SingleTypeSchema {
   collectionName: 'homes';
   info: {
-    displayName: 'Accueil';
+    displayName: "Page d'accueil";
     pluralName: 'homes';
     singularName: 'home';
   };
@@ -490,6 +555,60 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
       'images' | 'files' | 'videos' | 'audios'
     >;
     presentation_title: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPageSoinPageSoin extends Struct.SingleTypeSchema {
+  collectionName: 'page_soins';
+  info: {
+    displayName: 'Page soins';
+    pluralName: 'page-soins';
+    singularName: 'page-soin';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::page-soin.page-soin'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    soins_description: Schema.Attribute.RichText;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSoinSoin extends Struct.CollectionTypeSchema {
+  collectionName: 'soins';
+  info: {
+    displayName: 'Soins';
+    pluralName: 'soins';
+    singularName: 'soin';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::soin.soin'> &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.Text;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1007,8 +1126,12 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::cabinet.cabinet': ApiCabinetCabinet;
       'api::coordonnee.coordonnee': ApiCoordonneeCoordonnee;
+      'api::equipe.equipe': ApiEquipeEquipe;
       'api::home.home': ApiHomeHome;
+      'api::page-soin.page-soin': ApiPageSoinPageSoin;
+      'api::soin.soin': ApiSoinSoin;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

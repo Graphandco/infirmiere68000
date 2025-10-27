@@ -25,7 +25,7 @@ export default function Header({ coords }) {
    ];
 
    return (
-      <header className="mb-4 sm:mb-8 md:mb-12 lg:mb-16">
+      <header className="mb-4 sm:mb-8 md:mb-12 lg:mb-16 relative z-50">
          <div className="fixed h-10 top-0 left-0 w-full flex items-center justify-between md:hidden bg-black text-white px-4">
             <Link
                href={`tel:${coords.telephone}`}

@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "cabinets",
+  "info": {
+    "singularName": "cabinet",
+    "pluralName": "cabinets",
+    "displayName": "Page cabinet"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "equipe_title": {
+      "type": "string"
+    },
+    "equipe_description": {
+      "type": "richtext"
+    }
+  }
+}
