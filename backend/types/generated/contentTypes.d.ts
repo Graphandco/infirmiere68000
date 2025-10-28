@@ -562,6 +562,33 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiLegalLegal extends Struct.CollectionTypeSchema {
+  collectionName: 'legals';
+  info: {
+    displayName: 'Pages l\u00E9gales';
+    pluralName: 'legals';
+    singularName: 'legal';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.RichText;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::legal.legal'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiPageSoinPageSoin extends Struct.SingleTypeSchema {
   collectionName: 'page_soins';
   info: {
@@ -1130,6 +1157,7 @@ declare module '@strapi/strapi' {
       'api::coordonnee.coordonnee': ApiCoordonneeCoordonnee;
       'api::equipe.equipe': ApiEquipeEquipe;
       'api::home.home': ApiHomeHome;
+      'api::legal.legal': ApiLegalLegal;
       'api::page-soin.page-soin': ApiPageSoinPageSoin;
       'api::soin.soin': ApiSoinSoin;
       'plugin::content-releases.release': PluginContentReleasesRelease;

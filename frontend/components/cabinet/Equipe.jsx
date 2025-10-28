@@ -42,11 +42,11 @@ export default function Equipe({ equipe, cabinet }) {
                />
             </div>
          </FadeInOnView>
-         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10">
+         <FadeInOnView className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10">
             {sortedEquipe?.map((person) => (
                <div
                   key={person.id}
-                  className="flex flex-col sm:flex-row gap-2 md:gap-4 px-2 md:px-4 py-4 rounded-lg bg-white/60 shadow-md"
+                  className="h-full flex flex-col sm:flex-row gap-2 md:gap-4 px-2 md:px-4 py-4 rounded-lg bg-white/60 shadow-md"
                >
                   <div className="w-20 h-20 flex-shrink-0">
                      <Image
@@ -54,7 +54,7 @@ export default function Equipe({ equipe, cabinet }) {
                         alt={person.name}
                         width={80}
                         height={80}
-                        className="w-full h-full object-contain"
+                        className="w-full h-full object-cover object-top aspect-square bg-white rounded-full border-2 border-accent"
                         unoptimized
                      />
                   </div>
@@ -66,7 +66,7 @@ export default function Equipe({ equipe, cabinet }) {
                   </div>
                </div>
             ))}
-         </div>
+         </FadeInOnView>
       </section>
    );
 }
