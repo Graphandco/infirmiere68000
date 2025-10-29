@@ -481,7 +481,9 @@ export interface ApiCoordonneeCoordonnee extends Struct.SingleTypeSchema {
       'api::coordonnee.coordonnee'
     > &
       Schema.Attribute.Private;
+    ordinal: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    rpps: Schema.Attribute.String;
     telephone: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

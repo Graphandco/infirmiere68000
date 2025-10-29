@@ -22,6 +22,12 @@
     },
     "email": {
       "type": "string"
+    },
+    "rpps": {
+      "type": "string"
+    },
+    "ordinal": {
+      "type": "string"
     }
   }
 }

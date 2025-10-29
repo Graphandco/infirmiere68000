@@ -21,7 +21,7 @@ export default function Equipe({ equipe, cabinet }) {
 
    return (
       <section id="equipe">
-         <FadeInOnView className="flex gap-4 md:gap-10 items-center">
+         <FadeInOnView className="flex flex-col md:flex-row gap-4 md:gap-10 items-center">
             <div className="w-[120px] h-auto flex-shrink-0">
                <Image
                   src="/femme2.svg"
@@ -54,7 +54,7 @@ export default function Equipe({ equipe, cabinet }) {
                         alt={person.name}
                         width={80}
                         height={80}
-                        className="w-full h-full object-cover object-top aspect-square bg-white rounded-full border-2 border-accent"
+                        className="w-full h-full object-cover object-top aspect-square bg-white rounded-full border-4 border-accent"
                         unoptimized
                      />
                   </div>

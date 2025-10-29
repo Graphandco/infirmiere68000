@@ -42,8 +42,8 @@ export default function RootLayout({ children }) {
    return (
       <html lang="fr">
          <head>
+            <link rel="icon" type="image/png" href="/favicon-32x32.png" />
             <link rel="manifest" href="/manifest.json" />
-            <link rel="icon" href="/logo512.png" />
             <meta name="theme-color" content="#f3bfc5" />
          </head>
          <body
