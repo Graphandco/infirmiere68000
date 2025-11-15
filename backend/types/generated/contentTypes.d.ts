@@ -445,13 +445,47 @@ export interface ApiCabinetCabinet extends Struct.SingleTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     equipe_description: Schema.Attribute.RichText;
-    equipe_title: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::cabinet.cabinet'
     > &
       Schema.Attribute.Private;
+    meta_description: Schema.Attribute.Text;
+    meta_title: Schema.Attribute.String;
+    page_title: Schema.Attribute.String;
+    proximity_description: Schema.Attribute.RichText;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiContactContact extends Struct.SingleTypeSchema {
+  collectionName: 'contacts';
+  info: {
+    displayName: 'Page contact';
+    pluralName: 'contacts';
+    singularName: 'contact';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::contact.contact'
+    > &
+      Schema.Attribute.Private;
+    meta_description: Schema.Attribute.Text;
+    meta_title: Schema.Attribute.String;
+    page_description: Schema.Attribute.RichText;
+    page_title: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -611,6 +645,9 @@ export interface ApiPageSoinPageSoin extends Struct.SingleTypeSchema {
       'api::page-soin.page-soin'
     > &
       Schema.Attribute.Private;
+    meta_description: Schema.Attribute.Text;
+    meta_title: Schema.Attribute.String;
+    page_title: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     soins_description: Schema.Attribute.RichText;
     updatedAt: Schema.Attribute.DateTime;
@@ -1156,6 +1193,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::cabinet.cabinet': ApiCabinetCabinet;
+      'api::contact.contact': ApiContactContact;
       'api::coordonnee.coordonnee': ApiCoordonneeCoordonnee;
       'api::equipe.equipe': ApiEquipeEquipe;
       'api::home.home': ApiHomeHome;

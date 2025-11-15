@@ -62,10 +62,10 @@ export default function Header({ coords }) {
                </Link>
             </div>
             <Navbar links={links} />
-            <div className="hidden md:flex flex-col items-end text-black text-sm">
-               <span>64 Rue Robert Schuman</span>
-               <span>68000 Colmar</span>
-               <Link href="tel:0612345678">06 12 34 56 78</Link>
+            <div className="hidden md:flex flex-col items-end text-black text-sm font-semibold">
+               <span>{coords.adresse} </span>
+               <span>{coords.ville}</span>
+               <Link href={`tel:${coords.telephone}`}>{coords.telephone}</Link>
             </div>
          </div>
       </header>

@@ -17,7 +17,7 @@ export default function Coordonnees({ contacts }) {
                height={100}
             />
             <div className="flex flex-col group-hover:scale-90 transition-all">
-               <span className="uppercase text-xl font-bold">Téléphone</span>
+               <span className="text-xl font-bold">Téléphone</span>
                <span>{telephone}</span>
             </div>
          </Link>
@@ -33,7 +33,7 @@ export default function Coordonnees({ contacts }) {
                height={100}
             />
             <div className="flex flex-col group-hover:scale-90 transition-all">
-               <span className="uppercase text-xl font-bold">E-mail</span>
+               <span className="text-xl font-bold">E-mail</span>
                <span>{email}</span>
             </div>
          </Link>

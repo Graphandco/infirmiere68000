@@ -4,14 +4,50 @@ import H1 from "@/components/ui/H1";
 import ContactForm from "@/components/contact/ContactForm";
 import Image from "next/image";
 import FadeInOnView from "@/components/ui/FadeInOnView";
+import { marked } from "marked";
+
+export async function generateMetadata() {
+   const contactContent = await getStrapiUnique({ type: "contact" });
+   const cleanDescription = (
+      contactContent.meta_description ||
+      "Contactez votre cabinet infirmier à Colmar."
+   )
+      .replace(/[#*]/g, "")
+      .slice(0, 160);
+
+   return {
+      title:
+         contactContent.meta_title ||
+         `${contactContent.page_title} - Infirmière 68000`,
+      description: cleanDescription,
+      openGraph: {
+         title:
+            contactContent.meta_title ||
+            `${contactContent.page_title} - Infirmière 68000`,
+         description: cleanDescription,
+         url: "https://infirmiere68000.fr",
+         type: "website",
+         siteName: "Infirmière 68000",
+      },
+   };
+}
 
 export default async function ContactPage() {
    const contacts = await getStrapiUnique({ type: "coordonnee" });
+   const contactContent = await getStrapiUnique({ type: "contact" });
    return (
       <>
          <section>
             <div className="wrapper">
-               <H1>Contactez-nous</H1>
+               <H1>{contactContent.page_title}</H1>
+               <div
+                  className="prose mb-5"
+                  dangerouslySetInnerHTML={{
+                     __html: marked.parse(
+                        contactContent.page_description || ""
+                     ),
+                  }}
+               />
             </div>
          </section>
          <section>

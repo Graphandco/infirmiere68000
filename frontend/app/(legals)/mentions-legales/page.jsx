@@ -4,9 +4,9 @@ import H1 from "@/components/ui/H1";
 
 export async function generateMetadata() {
    return {
-      title: "Mentions légales | Elsass Compta",
+      title: "Mentions légales | Infirmière 68000",
       description:
-         "Mentions légales d'Elsass Compta, cabinet d'expertise comptable en Alsace. Informations légales et réglementaires.",
+         "Mentions légales d'Infirmière 68000, cabinet de soins médicaux à Colmar. Informations légales et réglementaires.",
       robots: {
          index: false,
          follow: false,

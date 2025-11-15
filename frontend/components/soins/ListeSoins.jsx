@@ -3,16 +3,36 @@ import FadeInOnView from "../ui/FadeInOnView";
 import Image from "next/image";
 
 export default function ListeSoins({ soins, contentSoins }) {
-   // console.log(soins);
+   const getImageUrl = (soin) => {
+      const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL;
+
+      // Si l'image existe
+      if (!soin?.image) {
+         return null;
+      }
+
+      // Essayer d'abord le format small (pour PNG)
+      if (soin.image.formats?.small?.url) {
+         return `${baseUrl}${soin.image.formats.small.url}`;
+      }
+
+      // Sinon utiliser l'URL principale
+      if (soin.image.url) {
+         return `${baseUrl}${soin.image.url}`;
+      }
+
+      return null;
+   };
+
    return (
       <div>
-         <div className="flex flex-col md:flex-row gap-4 md:gap-10 items-center">
+         <div className="flex flex-col sm:flex-row gap-4 sm:gap-10 md:gap-16 items-center">
             <Image
-               src="/stethoscope.svg"
-               alt="Stethoscope"
+               src="/infirmiere-soins.svg"
+               alt="Infirmière avec accessoires"
                width={500}
                height={500}
-               className="w-40 h-auto object-contain"
+               className="w-32 sm:w-46 h-auto object-contain"
             />
             <div
                className="prose mb-5"
@@ -21,22 +41,29 @@ export default function ListeSoins({ soins, contentSoins }) {
                }}
             />
          </div>
-         <FadeInOnView className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:py-8 md:py-16">
-            {soins.map((soin) => (
-               <div
-                  className="h-full flex flex-col items-center justify-between gap-4 bg-white/60 p-4 rounded-lg shadow-md"
-                  key={soin.id}
-               >
-                  <div className="text-center">{soin?.name}</div>
-                  <Image
-                     src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${soin?.image?.url}`}
-                     alt={soin?.name}
-                     width={50}
-                     height={50}
-                     className="w-30 aspect-square object-contain"
-                  />
-               </div>
-            ))}
+         <FadeInOnView className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:py-8 md:py-16">
+            {soins.map((soin) => {
+               const imageUrl = getImageUrl(soin);
+
+               return (
+                  <div
+                     className="h-full flex items-center gap-4 md:gap-8 bg-white/60 py-4 px-4 md:px-8 rounded-lg shadow-md"
+                     key={soin.id}
+                  >
+                     {imageUrl && (
+                        <Image
+                           src={imageUrl}
+                           alt={soin?.name}
+                           width={80}
+                           height={80}
+                           className="h-20 aspect-square object-contain"
+                           unoptimized
+                        />
+                     )}
+                     <div className="">{soin?.name}</div>
+                  </div>
+               );
+            })}
          </FadeInOnView>
       </div>
    );

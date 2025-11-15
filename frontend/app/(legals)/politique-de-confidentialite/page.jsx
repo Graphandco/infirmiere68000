@@ -4,9 +4,9 @@ import H1 from "@/components/ui/H1";
 
 export async function generateMetadata() {
    return {
-      title: "Politique de confidentialité | Elsass Compta",
+      title: "Politique de confidentialité | Infirmière 68000",
       description:
-         "Politique de confidentialité d'Elsass Compta. Comment nous protégeons et utilisons vos données personnelles.",
+         "Politique de confidentialité d'Infirmière 68000. Comment nous protégeons et utilisons vos données personnelles.",
       robots: {
          index: false,
          follow: false,

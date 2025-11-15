@@ -2,6 +2,8 @@ import Image from "next/image";
 import H2 from "@/components/ui/H2";
 import { marked } from "marked";
 import FadeInOnView from "../ui/FadeInOnView";
+import { Button } from "../ui/button";
+import Link from "next/link";
 
 export default function Equipe({ equipe, cabinet }) {
    // Trier l'équipe par ordre
@@ -22,7 +24,7 @@ export default function Equipe({ equipe, cabinet }) {
    return (
       <section id="equipe">
          <FadeInOnView className="flex flex-col md:flex-row gap-4 md:gap-10 items-center">
-            <div className="w-[120px] h-auto flex-shrink-0">
+            <div className="w-32 sm:w-46 h-auto flex-shrink-0">
                <Image
                   src="/femme2.svg"
                   alt="Notre équipe"
@@ -33,16 +35,19 @@ export default function Equipe({ equipe, cabinet }) {
                />
             </div>
             <div>
-               <H2>{cabinet.equipe_title}</H2>
                <div
                   className="prose mb-5"
                   dangerouslySetInnerHTML={{
                      __html: marked.parse(cabinet.equipe_description || ""),
                   }}
                />
+               <Link href="/contact">
+                  <Button size="lg">Contactez-nous</Button>
+               </Link>
             </div>
          </FadeInOnView>
-         <FadeInOnView className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10">
+
+         <FadeInOnView className="grid grid-cols-1 md:grid-cols-2 gap-4 py-8 md:py-12">
             {sortedEquipe?.map((person) => (
                <div
                   key={person.id}
@@ -66,6 +71,15 @@ export default function Equipe({ equipe, cabinet }) {
                   </div>
                </div>
             ))}
+         </FadeInOnView>
+
+         <FadeInOnView>
+            <div
+               className="prose mb-10 max-w-full"
+               dangerouslySetInnerHTML={{
+                  __html: marked.parse(cabinet.proximity_description || ""),
+               }}
+            />
          </FadeInOnView>
       </section>
    );

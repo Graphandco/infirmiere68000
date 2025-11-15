@@ -11,10 +11,19 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "equipe_title": {
+    "page_title": {
       "type": "string"
     },
     "equipe_description": {
+      "type": "richtext"
+    },
+    "meta_title": {
+      "type": "string"
+    },
+    "meta_description": {
+      "type": "text"
+    },
+    "proximity_description": {
       "type": "richtext"
     }
   }
