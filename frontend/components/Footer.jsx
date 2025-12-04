@@ -9,6 +9,7 @@ export default function Footer() {
                   <Link href="/mentions-legales" className="hover:text-black">
                      Mentions légales
                   </Link>
+                  <div>-</div>
                   <Link
                      href="/politique-de-confidentialite"
                      className="hover:text-black "

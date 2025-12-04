@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import FadeInOnView from "@/components/ui/FadeInOnView";
+import { Mail, Phone } from "lucide-react";
 
 export default function Hero({ hero }) {
    const { hero_title, hero_description, hero_image } = hero;
@@ -23,9 +24,18 @@ export default function Hero({ hero }) {
                {hero_title}
             </h1>
             <p className="text-black">{hero_description}</p>
-            <Link href="/contact">
-               <Button size="lg">Contactez-nous</Button>
-            </Link>
+            <div className="flex items-center gap-4">
+               <Link href="tel:0618216902">
+                  <Button size="lg">
+                     <Phone size={20} /> 06 18 21 69 02
+                  </Button>
+               </Link>
+               <Link href="/contact">
+                  <Button variant="outline" size="lg">
+                     <Mail size={20} /> Nous écrire
+                  </Button>
+               </Link>
+            </div>
          </div>
       </FadeInOnView>
    );

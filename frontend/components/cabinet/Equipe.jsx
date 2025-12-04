@@ -24,7 +24,7 @@ export default function Equipe({ equipe, cabinet }) {
    return (
       <section id="equipe">
          <FadeInOnView className="flex flex-col md:flex-row gap-4 md:gap-10 items-center">
-            <div className="w-32 sm:w-46 h-auto flex-shrink-0">
+            <div className="w-32 sm:w-46 h-auto shrink-0">
                <Image
                   src="/femme2.svg"
                   alt="Notre équipe"
@@ -53,7 +53,7 @@ export default function Equipe({ equipe, cabinet }) {
                   key={person.id}
                   className="h-full flex flex-col sm:flex-row gap-2 md:gap-4 px-2 md:px-4 py-4 rounded-lg bg-white/60 shadow-md"
                >
-                  <div className="w-20 h-20 flex-shrink-0">
+                  <div className="w-20 h-20 shrink-0">
                      <Image
                         src={getImageUrl(person)}
                         alt={person.name}
