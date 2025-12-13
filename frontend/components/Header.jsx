@@ -47,7 +47,7 @@ export default function Header({ coords }) {
             onClose={handleMenuClose}
             links={links}
          />
-         <div className="wrapper mt-10 md:mt-0 py-4 grid  md:grid-cols-[1fr_auto_1fr] items-center">
+         <div className="wrapper mt-10 md:mt-0 py-4 grid md:grid-cols-[1fr_auto_1fr] items-center">
             <div>
                <Link href="/" className="flex items-center gap-2">
                   <Image src="/logo.svg" alt="Logo" width={55} height={55} />
@@ -62,9 +62,8 @@ export default function Header({ coords }) {
                </Link>
             </div>
             <Navbar links={links} />
-            <div className="hidden md:flex flex-col items-end text-black text-sm font-semibold">
-               <span>{coords.adresse} </span>
-               <span>{coords.ville}</span>
+            <div className="hidden md:flex flex-col items-end text-black text-sm font-semibold text-right">
+               <span dangerouslySetInnerHTML={{ __html: coords.adresse }} />
                <Link href={`tel:${coords.telephone}`}>{coords.telephone}</Link>
             </div>
          </div>

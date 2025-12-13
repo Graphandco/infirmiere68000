@@ -1,8 +1,10 @@
 "use server";
 
+const REVALIDATE_TIME = Number(process.env.REVALIDATE_TIME) || 300;
+
 export async function getStrapiCollectionBySlug(collection, slug) {
    const url = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/${collection}?filters[slug][$eq]=${slug}&populate=*`;
-   const res = await fetch(url, { cache: "no-store" }); // SSR
+   const res = await fetch(url, { next: { revalidate: REVALIDATE_TIME } });
 
    if (!res.ok) throw new Error("Erreur Strapi");
 
@@ -12,7 +14,7 @@ export async function getStrapiCollectionBySlug(collection, slug) {
 
 export async function getStrapiCollections(collection) {
    let url = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/${collection}?populate=*`;
-   const res = await fetch(url, { cache: "no-store" });
+   const res = await fetch(url, { next: { revalidate: REVALIDATE_TIME } });
 
    if (!res.ok) {
       throw new Error("Erreur lors de la récupération de la collection");

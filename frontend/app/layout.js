@@ -47,7 +47,7 @@ export default function RootLayout({ children }) {
             <meta name="theme-color" content="#f3bfc5" />
          </head>
          <body
-            className={`${montserrat.variable} antialiased relative isolate after:content-[''] after:fixed after:top-0 after:left-0 after:w-full after:h-full after:bg-gradient-to-b after:from-background-light after:to-background after:-z-10`}
+            className={`${montserrat.variable} antialiased relative isolate after:content-[''] after:fixed after:top-0 after:left-0 after:w-full after:h-full after:bg-linear-to-b after:from-background-light after:to-background after:-z-10`}
             suppressHydrationWarning={true}
          >
             <HeaderWrapper />

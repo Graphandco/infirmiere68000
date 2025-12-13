@@ -1,29 +1,7 @@
-import { marked } from "marked";
 import FadeInOnView from "../ui/FadeInOnView";
 import Image from "next/image";
 
-export default function ListeSoins({ soins, contentSoins }) {
-   const getImageUrl = (soin) => {
-      const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL;
-
-      // Si l'image existe
-      if (!soin?.image) {
-         return null;
-      }
-
-      // Essayer d'abord le format small (pour PNG)
-      if (soin.image.formats?.small?.url) {
-         return `${baseUrl}${soin.image.formats.small.url}`;
-      }
-
-      // Sinon utiliser l'URL principale
-      if (soin.image.url) {
-         return `${baseUrl}${soin.image.url}`;
-      }
-
-      return null;
-   };
-
+export default function ListeSoins({ data }) {
    return (
       <div>
          <div className="flex flex-col sm:flex-row gap-4 sm:gap-10 md:gap-16 items-center">
@@ -36,23 +14,19 @@ export default function ListeSoins({ soins, contentSoins }) {
             />
             <div
                className="prose mb-5"
-               dangerouslySetInnerHTML={{
-                  __html: marked.parse(contentSoins.soins_description || ""),
-               }}
+               dangerouslySetInnerHTML={{ __html: data.content }}
             />
          </div>
-         <FadeInOnView className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:py-8 md:py-16">
-            {soins.map((soin) => {
-               const imageUrl = getImageUrl(soin);
-
+         <FadeInOnView className="grid grid-cols-1 sm:grid-cols-2 gap-4 py-8 md:py-16">
+            {data.soins.map((soin) => {
                return (
                   <div
                      className="h-full flex items-center gap-4 md:gap-8 bg-white/60 py-4 px-4 md:px-8 rounded-lg shadow-md"
                      key={soin.id}
                   >
-                     {imageUrl && (
+                     {soin.image && (
                         <Image
-                           src={imageUrl}
+                           src={soin.image.url}
                            alt={soin?.name}
                            width={80}
                            height={80}

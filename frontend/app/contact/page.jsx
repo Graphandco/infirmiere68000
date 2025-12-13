@@ -1,29 +1,28 @@
-import { getStrapiUnique } from "@/actions/getStrapiUnique";
 import Coordonnees from "@/components/contact/Coordonnees";
 import H1 from "@/components/ui/H1";
 import ContactForm from "@/components/contact/ContactForm";
 import Image from "next/image";
 import FadeInOnView from "@/components/ui/FadeInOnView";
-import { marked } from "marked";
+import {
+   getWordpressContent,
+   getWordpressCoordonnees,
+} from "@/actions/getWordpressContent";
+
+export const revalidate = Number(process.env.REVALIDATE_TIME) || 300;
 
 export async function generateMetadata() {
-   const contactContent = await getStrapiUnique({ type: "contact" });
+   const data = await getWordpressContent({ id: 82, type: "page" });
    const cleanDescription = (
-      contactContent.meta_description ||
-      "Contactez votre cabinet infirmier à Colmar."
+      data.seo.metaDesc || "Contactez votre cabinet infirmier à Colmar."
    )
       .replace(/[#*]/g, "")
       .slice(0, 160);
 
    return {
-      title:
-         contactContent.meta_title ||
-         `${contactContent.page_title} - Infirmière 68000`,
+      title: data.seo.title || `${data.title} - Infirmière 68000`,
       description: cleanDescription,
       openGraph: {
-         title:
-            contactContent.meta_title ||
-            `${contactContent.page_title} - Infirmière 68000`,
+         title: data.seo.title || `${data.title} - Infirmière 68000`,
          description: cleanDescription,
          url: "https://infirmiere68000.fr",
          type: "website",
@@ -33,25 +32,24 @@ export async function generateMetadata() {
 }
 
 export default async function ContactPage() {
-   const contacts = await getStrapiUnique({ type: "coordonnee" });
-   const contactContent = await getStrapiUnique({ type: "contact" });
+   const data = await getWordpressContent({ id: 82, type: "page" });
+   const coords = await getWordpressCoordonnees();
+
    return (
       <>
          <section>
             <div className="wrapper">
-               <H1>{contactContent.page_title}</H1>
+               <H1>{data.title}</H1>
                <div
                   className="prose mb-5"
                   dangerouslySetInnerHTML={{
-                     __html: marked.parse(
-                        contactContent.page_description || ""
-                     ),
+                     __html: data.content,
                   }}
                />
             </div>
          </section>
          <section>
-            <Coordonnees contacts={contacts} />
+            <Coordonnees coords={coords} />
          </section>
          <section className="wrapper py-6 sm:py-8 md:py-16">
             <FadeInOnView

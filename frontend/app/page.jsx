@@ -1,11 +1,13 @@
-import { getStrapiUnique } from "@/actions/getStrapiUnique";
 import Hero from "@/components/home/Hero";
 import Presentation from "@/components/home/Presentation";
+import { getWordpressContent } from "@/actions/getWordpressContent";
+
+export const revalidate = Number(process.env.REVALIDATE_TIME) || 300;
 
 export async function generateMetadata() {
-   const home = await getStrapiUnique({ type: "home" });
+   const pageData = await getWordpressContent({ id: 2, type: "page" });
    const cleanDescription = (
-      home.meta_description ||
+      pageData.seo.metaDesc ||
       "Infirmières libérales diplômées d’État et conventionnées pour vos soins sur prescription médicale."
    )
       .replace(/[#*]/g, "")
@@ -13,12 +15,12 @@ export async function generateMetadata() {
 
    return {
       title:
-         home.meta_title ||
+         pageData.seo.title ||
          "Cabinet de soins médicaux à Colmar - Infirmière 68000",
       description: cleanDescription,
       openGraph: {
          title:
-            home.meta_title ||
+            pageData.seo.title ||
             "Cabinet de soins médicaux à Colmar - Infirmière 68000",
          description: cleanDescription,
          url: "https://infirmiere68000.fr",
@@ -29,12 +31,12 @@ export async function generateMetadata() {
 }
 
 export default async function Home() {
-   const home = await getStrapiUnique({ type: "home" });
+   const pageData = await getWordpressContent({ id: 2, type: "page" });
 
    return (
       <>
-         <Hero hero={home} />
-         <Presentation presentation={home} />
+         <Hero pageData={pageData} />
+         <Presentation pageData={pageData} />
       </>
    );
 }

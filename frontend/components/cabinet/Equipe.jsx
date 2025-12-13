@@ -1,20 +1,20 @@
 import Image from "next/image";
-import H2 from "@/components/ui/H2";
-import { marked } from "marked";
 import FadeInOnView from "../ui/FadeInOnView";
 import { Button } from "../ui/button";
 import Link from "next/link";
 
-export default function Equipe({ equipe, cabinet }) {
+export default function Equipe({ data }) {
    // Trier l'équipe par ordre
-   const sortedEquipe = [...equipe].sort((a, b) => a.order - b.order);
+   const sortedEquipe = [...data.team].sort((a, b) => a.order - b.order);
 
    const getImageUrl = (person) => {
-      const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL;
-
-      // Si l'image Strapi existe, utiliser le format small
-      if (person.image?.formats?.small?.url) {
-         return `${baseUrl}${person.image.formats.small.url}`;
+      // Si l'image ACF existe, l'utiliser (peut être une URL ou un objet avec url)
+      if (person.image) {
+         const imageUrl =
+            typeof person.image === "string" ? person.image : person.image.url;
+         if (imageUrl) {
+            return imageUrl;
+         }
       }
 
       // Sinon utiliser le fallback selon le sexe
@@ -37,9 +37,7 @@ export default function Equipe({ equipe, cabinet }) {
             <div>
                <div
                   className="prose mb-5"
-                  dangerouslySetInnerHTML={{
-                     __html: marked.parse(cabinet.equipe_description || ""),
-                  }}
+                  dangerouslySetInnerHTML={{ __html: data.content }}
                />
                <Link href="/contact">
                   <Button size="lg">Contactez-nous</Button>
@@ -65,9 +63,10 @@ export default function Equipe({ equipe, cabinet }) {
                   </div>
                   <div className="space-y-1">
                      <div className="md:text-lg font-bold">{person.name}</div>
-                     <div className="text-gray-600 text-sm">
-                        {person.description}
-                     </div>
+                     <div
+                        className="text-gray-600 text-sm"
+                        dangerouslySetInnerHTML={{ __html: person.description }}
+                     />
                   </div>
                </div>
             ))}
@@ -76,9 +75,7 @@ export default function Equipe({ equipe, cabinet }) {
          <FadeInOnView>
             <div
                className="prose mb-10 max-w-full"
-               dangerouslySetInnerHTML={{
-                  __html: marked.parse(cabinet.proximity_description || ""),
-               }}
+               dangerouslySetInnerHTML={{ __html: data.proximity }}
             />
          </FadeInOnView>
       </section>

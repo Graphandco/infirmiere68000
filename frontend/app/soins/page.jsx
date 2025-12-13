@@ -1,26 +1,24 @@
 import H1 from "@/components/ui/H1";
-import { getStrapiCollections } from "@/actions/getStrapiCollections";
-import { getStrapiUnique } from "@/actions/getStrapiUnique";
+import { getWordpressContent } from "@/actions/getWordpressContent";
+
 import ListeSoins from "@/components/soins/ListeSoins";
 
+export const revalidate = Number(process.env.REVALIDATE_TIME) || 300;
+
 export async function generateMetadata() {
-   const contentSoins = await getStrapiUnique({ type: "page-soin" });
+   const data = await getWordpressContent({ id: 65, type: "page" });
    const cleanDescription = (
-      contentSoins.meta_description ||
+      data.seo.metaDesc ||
       "Infirmières libérales diplômées d’État et conventionnées pour vos soins sur prescription médicale."
    )
       .replace(/[#*]/g, "")
       .slice(0, 160);
 
    return {
-      title:
-         contentSoins.meta_title ||
-         `${contentSoins.page_title} - Infirmière 68000`,
+      title: data.seo.title || `${data.title} - Infirmière 68000`,
       description: cleanDescription,
       openGraph: {
-         title:
-            contentSoins.meta_title ||
-            `${contentSoins.page_title} - Infirmière 68000`,
+         title: data.seo.title || `${data.title} - Infirmière 68000`,
          description: cleanDescription,
          url: "https://infirmiere68000.fr",
          type: "website",
@@ -30,13 +28,12 @@ export async function generateMetadata() {
 }
 
 export default async function SoinsPage() {
-   const soins = await getStrapiCollections("soins");
-   const contentSoins = await getStrapiUnique({ type: "page-soin" });
+   const data = await getWordpressContent({ id: 65, type: "page" });
 
    return (
       <section className="wrapper">
-         <H1>{contentSoins.page_title}</H1>
-         <ListeSoins soins={soins} contentSoins={contentSoins} />
+         <H1>{data.title}</H1>
+         <ListeSoins data={data} />
       </section>
    );
 }
