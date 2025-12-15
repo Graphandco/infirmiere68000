@@ -2,7 +2,7 @@ import H1 from "@/components/ui/H1";
 import Equipe from "@/components/cabinet/Equipe";
 import { getWordpressContent } from "@/actions/getWordpressContent";
 
-export const revalidate = Number(process.env.REVALIDATE_TIME) || 300;
+export const revalidate = 300;
 
 export async function generateMetadata() {
    const data = await getWordpressContent({ id: 39, type: "page" });

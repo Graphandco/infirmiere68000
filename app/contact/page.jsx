@@ -8,7 +8,7 @@ import {
    getWordpressCoordonnees,
 } from "@/actions/getWordpressContent";
 
-export const revalidate = Number(process.env.REVALIDATE_TIME) || 300;
+export const revalidate = 300;
 
 export async function generateMetadata() {
    const data = await getWordpressContent({ id: 82, type: "page" });

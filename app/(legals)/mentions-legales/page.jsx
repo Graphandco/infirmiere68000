@@ -1,7 +1,7 @@
 import { getWordpressContent } from "@/actions/getWordpressContent";
 import H1 from "@/components/ui/H1";
 
-export const revalidate = Number(process.env.REVALIDATE_TIME) || 300;
+export const revalidate = 300;
 
 export async function generateMetadata() {
    return {

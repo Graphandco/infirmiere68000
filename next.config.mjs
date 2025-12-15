@@ -16,7 +16,8 @@ const nextConfig = {
          },
          {
             protocol: "https",
-            hostname: "**",
+            hostname: "admin.infirmiere68000.fr",
+            pathname: "/wp-content/uploads/**",
          },
       ],
    },

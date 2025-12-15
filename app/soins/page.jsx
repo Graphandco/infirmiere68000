@@ -3,7 +3,7 @@ import { getWordpressContent } from "@/actions/getWordpressContent";
 
 import ListeSoins from "@/components/soins/ListeSoins";
 
-export const revalidate = Number(process.env.REVALIDATE_TIME) || 300;
+export const revalidate = 300;
 
 export async function generateMetadata() {
    const data = await getWordpressContent({ id: 65, type: "page" });
