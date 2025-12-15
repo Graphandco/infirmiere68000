@@ -10,6 +10,9 @@ const montserrat = Montserrat({
 });
 
 export const metadata = {
+   metadataBase: new URL(
+      process.env.NEXT_PUBLIC_SITE_URL || "https://infirmiere68000.fr"
+   ),
    title: "Infirmière Colmar 68000 - Soins à domicile",
    description:
       "Infirmières libérales diplômées d'État et conventionnées pour vos soins sur prescription médicale à Colmar et dans le Haut-Rhin",
