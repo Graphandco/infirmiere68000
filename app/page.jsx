@@ -16,12 +16,12 @@ export async function generateMetadata() {
    return {
       title:
          pageData.seo.title ||
-         "Cabinet de soins médicaux à Colmar - Infirmière 68000",
+         "Cabinet de soins infirmiers à Colmar - Infirmière 68000",
       description: cleanDescription,
       openGraph: {
          title:
             pageData.seo.title ||
-            "Cabinet de soins médicaux à Colmar - Infirmière 68000",
+            "Cabinet de soins infirmiers à Colmar - Infirmière 68000",
          description: cleanDescription,
          url: "https://infirmiere68000.fr",
          type: "website",

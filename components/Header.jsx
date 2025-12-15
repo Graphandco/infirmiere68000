@@ -46,6 +46,7 @@ export default function Header({ coords }) {
             isOpen={isMenuOpen}
             onClose={handleMenuClose}
             links={links}
+            coords={coords}
          />
          <div className="wrapper mt-10 md:mt-0 py-4 grid md:grid-cols-[1fr_auto_1fr] items-center">
             <div>

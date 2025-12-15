@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import Link from "next/link";
 
-export default function MobileMenu({ isOpen, onClose, links }) {
+export default function MobileMenu({ isOpen, onClose, links, coords }) {
    return (
       <AnimatePresence>
          {isOpen && (
@@ -82,15 +82,17 @@ export default function MobileMenu({ isOpen, onClose, links }) {
                      <div className="text-center">
                         <p className="text-sm text-gray-600 mb-2">Contact</p>
                         <Link
-                           href="tel:0612345678"
+                           href={`tel:${coords.telephone}`}
                            className="text-lg font-semibold text-gray-900 hover:text-blue-600 transition-colors"
                         >
-                           06 12 34 56 78
+                           {coords.telephone}
                         </Link>
                         <p className="text-sm text-gray-500 mt-1">
-                           64 Rue Robert Schuman
-                           <br />
-                           68000 Colmar
+                           <span
+                              dangerouslySetInnerHTML={{
+                                 __html: coords.adresse,
+                              }}
+                           />
                         </p>
                      </div>
                   </motion.div>
