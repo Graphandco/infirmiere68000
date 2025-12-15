@@ -49,7 +49,7 @@ export default function Equipe({ data }) {
             {sortedEquipe?.map((person) => (
                <div
                   key={person.id}
-                  className="h-full flex flex-col sm:flex-row gap-3 md:gap-6 px-2 md:px-4 py-4 rounded-lg bg-white/60 shadow-md"
+                  className="h-full flex flex-col items-center sm:flex-row gap-3 md:gap-6 px-2 md:px-4 py-4 rounded-lg bg-white/60 shadow-md text-center sm:text-left"
                >
                   <div className="w-30 h-30 shrink-0">
                      <Image
