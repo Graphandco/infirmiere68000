@@ -2,7 +2,6 @@ import { Montserrat } from "next/font/google";
 import "./globals.css";
 import HeaderWrapper from "@/components/HeaderWrapper";
 import Footer from "@/components/Footer";
-import LoadGoogleAnalytics from "@/components/LoadGoogleAnalytics";
 
 const montserrat = Montserrat({
    variable: "--font-montserrat",
@@ -57,7 +56,6 @@ export default function RootLayout({ children }) {
             <HeaderWrapper />
             <main className="min-h-screen">{children}</main>
             <Footer />
-            <LoadGoogleAnalytics />
          </body>
       </html>
    );
