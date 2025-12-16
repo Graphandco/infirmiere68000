@@ -20,7 +20,7 @@ export default function MobileMenu({ isOpen, onClose, links, coords }) {
 
                {/* Menu Panel */}
                <motion.div
-                  className="fixed top-0 right-0 h-full w-full max-w-sm bg-gradient-to-b from-background-light to-background z-50 shadow-2xl"
+                  className="fixed top-0 right-0 h-full w-full max-w-sm bg-linear-to-b from-background-light to-background z-50 shadow-2xl"
                   initial={{ x: "100%" }}
                   animate={{ x: 0 }}
                   exit={{ x: "100%" }}
