@@ -19,9 +19,9 @@ export default function Presentation({ pageData }) {
                      className="prose mb-5"
                      dangerouslySetInnerHTML={{ __html: pageData.content }}
                   />
-                  <Link href="/soins">
+                  {/* <Link href="/soins">
                      <Button size="lg">Découvrez nos soins</Button>
-                  </Link>
+                  </Link> */}
                </div>
 
                <div className="w-[200px] lg:w-[300px]">
