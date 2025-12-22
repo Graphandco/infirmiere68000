@@ -39,9 +39,9 @@ export default function Equipe({ data }) {
                   className="prose mb-5"
                   dangerouslySetInnerHTML={{ __html: data.content }}
                />
-               {/* <Link href="/contact">
-                  <Button size="lg">Contactez-nous</Button>
-               </Link> */}
+               <Link href="/soins">
+                  <Button size="lg">Découvrez nos soins</Button>
+               </Link>
             </div>
          </FadeInOnView>
 

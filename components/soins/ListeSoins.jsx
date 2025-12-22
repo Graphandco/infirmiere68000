@@ -1,5 +1,7 @@
-import FadeInOnView from "../ui/FadeInOnView";
+import FadeInOnView from "@/components/ui/FadeInOnView";
 import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function ListeSoins({ data }) {
    return (
@@ -12,12 +14,21 @@ export default function ListeSoins({ data }) {
                height={500}
                className="w-32 sm:w-46 h-auto object-contain"
             />
-            <div
-               className="prose mb-5"
-               dangerouslySetInnerHTML={{ __html: data.content }}
-            />
+            <div className="prose mb-5">
+               <div
+                  className="mb-5"
+                  dangerouslySetInnerHTML={{ __html: data.content }}
+               />
+               <Link href="/contact">
+                  <Button size="lg">Contactez-nous</Button>
+               </Link>
+               {/* <h3 className="mt-5">
+                  Découvrez ci-dessous les différents soins que nous effectuons.
+               </h3> */}
+            </div>
          </div>
-         <FadeInOnView className="grid grid-cols-1 sm:grid-cols-2 gap-4 py-8 md:py-16">
+         <FadeInOnView></FadeInOnView>
+         <FadeInOnView className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 md:pt-8 pb-8 md:pb-16">
             {data.soins.map((soin) => {
                return (
                   <div

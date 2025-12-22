@@ -54,6 +54,7 @@ export default async function ContactPage() {
          <section className="wrapper py-6 sm:py-8 md:py-16">
             <FadeInOnView
                delay={0.25}
+               responsiveAmount={0.1}
                className="block sm:flex gap-20 items-end"
             >
                <Image
