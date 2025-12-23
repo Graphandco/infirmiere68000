@@ -26,6 +26,9 @@ RUN npm run build
 # Runtime stage
 FROM node:20-alpine
 
+# Créer un utilisateur et un groupe non-root
+RUN addgroup -S nodejs && adduser -S nextjs -G nodejs
+
 WORKDIR /app
 
 # Copier uniquement les fichiers nécessaires depuis le builder
@@ -38,6 +41,12 @@ COPY --from=builder /app/next.config.* ./
 ENV NODE_ENV=production
 ENV PORT=3005
 ENV HOSTNAME=0.0.0.0
+
+# Donner les droits au user non-root
+RUN chown -R nextjs:nodejs /app
+
+# Basculer sur l'utilisateur non-root
+USER nextjs
 
 EXPOSE 3005
 
