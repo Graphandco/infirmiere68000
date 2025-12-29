@@ -39,9 +39,6 @@ export default function Equipe({ data }) {
                   className="prose mb-5"
                   dangerouslySetInnerHTML={{ __html: data.content }}
                />
-               <Link href="/soins">
-                  <Button size="lg">Découvrez nos soins</Button>
-               </Link>
             </div>
          </FadeInOnView>
 
@@ -74,9 +71,14 @@ export default function Equipe({ data }) {
 
          <FadeInOnView>
             <div
-               className="prose mb-10 max-w-full"
+               className="prose mb-5 max-w-full"
                dangerouslySetInnerHTML={{ __html: data.proximity }}
             />
+            <div className="mb-10">
+               <Link href="/soins">
+                  <Button size="lg">Découvrez nos soins</Button>
+               </Link>
+            </div>
          </FadeInOnView>
       </section>
    );
