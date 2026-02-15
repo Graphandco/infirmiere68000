@@ -9,8 +9,8 @@ services:
             NEXT_PUBLIC_WP_REST: ${NEXT_PUBLIC_WP_REST}
             REVALIDATE_TIME: ${REVALIDATE_TIME:-300}
       restart: unless-stopped
-      ports:
-         - "3005:3005"
+      # ports:
+      #    - "3005:3005"
       env_file:
          - .env
       networks:
