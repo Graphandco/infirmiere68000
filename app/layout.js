@@ -1,8 +1,10 @@
+import { Suspense } from "react";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import HeaderWrapper from "@/components/HeaderWrapper";
 import Footer from "@/components/Footer";
 import LoadGoogleAnalytics from "@/components/LoadGoogleAnalytics";
+import MatomoAnalytics from "@/components/MatomoAnalytics";
 
 const montserrat = Montserrat({
    variable: "--font-montserrat",
@@ -58,6 +60,9 @@ export default function RootLayout({ children }) {
             <main className="min-h-screen">{children}</main>
             <Footer />
             <LoadGoogleAnalytics />
+            <Suspense fallback={null}>
+               <MatomoAnalytics />
+            </Suspense>
          </body>
       </html>
    );
