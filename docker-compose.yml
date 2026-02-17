@@ -8,6 +8,8 @@ services:
             NEXT_PUBLIC_WP_GRAPHQL: ${NEXT_PUBLIC_WP_GRAPHQL}
             NEXT_PUBLIC_WP_REST: ${NEXT_PUBLIC_WP_REST}
             REVALIDATE_TIME: ${REVALIDATE_TIME:-300}
+            NEXT_PUBLIC_MATOMO_URL: ${NEXT_PUBLIC_MATOMO_URL}
+            NEXT_PUBLIC_MATOMO_SITE_ID: ${NEXT_PUBLIC_MATOMO_SITE_ID}
       restart: unless-stopped
       # ports:
       #    - "3005:3005"
