@@ -6,7 +6,6 @@ services:
          dockerfile: Dockerfile
          args:
             NEXT_PUBLIC_WP_GRAPHQL: ${NEXT_PUBLIC_WP_GRAPHQL}
-            REVALIDATE_TIME: ${REVALIDATE_TIME:-300}
             NEXT_PUBLIC_MATOMO_URL: ${NEXT_PUBLIC_MATOMO_URL}
             NEXT_PUBLIC_MATOMO_SITE_ID: ${NEXT_PUBLIC_MATOMO_SITE_ID}
       restart: unless-stopped
