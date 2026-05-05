@@ -1,5 +1,6 @@
-import { getWordpressContent } from "@/actions/getWordpressContent";
 import H1 from "@/components/ui/H1";
+import { getWordpressContent } from "@/actions/getWordpressContent";
+import { getGlobalContentQuery } from "@/actions/queries/globalContentQuery";
 
 export const revalidate = 300;
 
@@ -16,7 +17,11 @@ export async function generateMetadata() {
 }
 
 export default async function MentionsLegales() {
-   const data = await getWordpressContent({ id: 93, type: "page" });
+   const data = await getWordpressContent({
+      query: getGlobalContentQuery("page"),
+      variables: { id: 93 },
+      rootField: "page",
+   });
 
    return (
       <section className="wrapper pt-10 pb-20">

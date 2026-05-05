@@ -4,6 +4,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 export default function ListeSoins({ data }) {
+   const soins = data.listeDesSoins?.soins || [];
+
    return (
       <div>
          <div className="flex flex-col sm:flex-row gap-4 sm:gap-10 md:gap-16 items-center">
@@ -29,23 +31,24 @@ export default function ListeSoins({ data }) {
          </div>
          <FadeInOnView></FadeInOnView>
          <FadeInOnView className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 md:pt-8 pb-8 md:pb-16">
-            {data.soins.map((soin) => {
+            {soins.map((soin, index) => {
+               const image = soin.imageDuSoin?.node;
                return (
                   <div
                      className="h-full flex items-center gap-4 md:gap-8 bg-white/60 py-4 px-4 md:px-8 rounded-lg shadow-md"
-                     key={soin.id}
+                     key={`${soin.nomDuSoin || "soin"}-${index}`}
                   >
-                     {soin.image && (
+                     {image?.sourceUrl && (
                         <Image
-                           src={soin.image.url}
-                           alt={soin?.name}
-                           width={80}
-                           height={80}
+                           src={image.sourceUrl}
+                           alt={image.altText || soin?.nomDuSoin || "Soin"}
+                           width={image.mediaDetails?.width || 80}
+                           height={image.mediaDetails?.height || 80}
                            className="h-20 aspect-square object-contain"
                            unoptimized
                         />
                      )}
-                     <div className="">{soin?.name}</div>
+                     <div className="">{soin?.nomDuSoin}</div>
                   </div>
                );
             })}

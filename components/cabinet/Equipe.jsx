@@ -4,21 +4,21 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 
 export default function Equipe({ data }) {
+   const team = data.leCabinet?.membresDeLequipe || [];
+   const proximity = data.leCabinet?.texteDeProximite || "";
+
    // Trier l'équipe par ordre
-   const sortedEquipe = [...data.team].sort((a, b) => a.order - b.order);
+   const sortedEquipe = [...team].sort((a, b) => (a.order || 0) - (b.order || 0));
 
    const getImageUrl = (person) => {
-      // Si l'image ACF existe, l'utiliser (peut être une URL ou un objet avec url)
-      if (person.image) {
-         const imageUrl =
-            typeof person.image === "string" ? person.image : person.image.url;
-         if (imageUrl) {
-            return imageUrl;
-         }
+      const imageUrl = person.image?.node?.sourceUrl;
+      if (imageUrl) {
+         return imageUrl;
       }
 
       // Sinon utiliser le fallback selon le sexe
-      return `/${person.sex || "default"}.svg`;
+      const sexe = Array.isArray(person.sexe) ? person.sexe[0] : person.sexe;
+      return `/${sexe || "default"}.svg`;
    };
 
    return (
@@ -51,7 +51,7 @@ export default function Equipe({ data }) {
                   <div className="w-30 h-30 shrink-0">
                      <Image
                         src={getImageUrl(person)}
-                        alt={person.name}
+                        alt={person.nom || "Membre de l'équipe"}
                         width={80}
                         height={80}
                         className="w-full h-full object-cover object-top aspect-square bg-white rounded-full border-4 border-accent"
@@ -59,7 +59,7 @@ export default function Equipe({ data }) {
                      />
                   </div>
                   <div className="space-y-1">
-                     <div className="md:text-lg font-bold">{person.name}</div>
+                  <div className="md:text-lg font-bold">{person.nom}</div>
                      <div
                         className="text-gray-600 text-sm"
                         dangerouslySetInnerHTML={{ __html: person.description }}
@@ -72,7 +72,7 @@ export default function Equipe({ data }) {
          <FadeInOnView>
             <div
                className="prose mb-5 max-w-full"
-               dangerouslySetInnerHTML={{ __html: data.proximity }}
+               dangerouslySetInnerHTML={{ __html: proximity }}
             />
             <div className="mb-10">
                <Link href="/soins">

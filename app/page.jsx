@@ -1,11 +1,20 @@
 import Hero from "@/components/home/Hero";
 import Presentation from "@/components/home/Presentation";
 import { getWordpressContent } from "@/actions/getWordpressContent";
+import { HOMEPAGE_CONTENT_QUERY } from "@/actions/queries/homepageContentQuery";
 
 export const revalidate = 300;
 
+async function getHomePageData() {
+   return getWordpressContent({
+      query: HOMEPAGE_CONTENT_QUERY,
+      variables: { id: 2 },
+      rootField: "page",
+   });
+}
+
 export async function generateMetadata() {
-   const pageData = await getWordpressContent({ id: 2, type: "page" });
+   const pageData = await getHomePageData();
    const cleanDescription = (
       pageData.seo.metaDesc ||
       "Infirmières libérales diplômées d’État et conventionnées pour vos soins sur prescription médicale."
@@ -31,7 +40,7 @@ export async function generateMetadata() {
 }
 
 export default async function Home() {
-   const pageData = await getWordpressContent({ id: 2, type: "page" });
+   const pageData = await getHomePageData();
 
    return (
       <>

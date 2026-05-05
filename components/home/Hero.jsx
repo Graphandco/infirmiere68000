@@ -5,17 +5,18 @@ import FadeInOnView from "@/components/ui/FadeInOnView";
 import { Mail, Phone } from "lucide-react";
 
 export default function Hero({ hero, pageData }) {
-   const heroImage = pageData.acf?.hero_image;
+   const heroImage = pageData?.homepage?.imageDuHero?.node;
+   console.log(pageData);
 
    return (
       <FadeInOnView className="wrapper flex flex-col sm:flex-row items-center gap-5 sm:gap-10 md:gap-20">
          <div className="w-[90%] sm:w-[300px] md:w-[400px] lg:w-[450px] mx-auto">
-            {heroImage?.url && (
+            {heroImage?.sourceUrl && (
                <Image
-                  src={heroImage.url}
-                  alt={heroImage.alt || "Hero"}
-                  width={heroImage.width || 550}
-                  height={heroImage.height || 550}
+                  src={heroImage.sourceUrl}
+                  alt={heroImage.altText || "Hero"}
+                  width={heroImage.mediaDetails?.width || 550}
+                  height={heroImage.mediaDetails?.height || 550}
                   className="w-full h-auto"
                />
             )}
@@ -25,7 +26,7 @@ export default function Hero({ hero, pageData }) {
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black">
                {pageData.title}
             </h1>
-            <p className="text-black">{pageData.acf.hero_description}</p>
+            <p className="text-black">{pageData.homepage?.descriptionDuHero}</p>
             <div className="flex items-center gap-4">
                <Link href="tel:0618216902">
                   <Button size="lg">

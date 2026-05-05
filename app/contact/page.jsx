@@ -3,26 +3,33 @@ import H1 from "@/components/ui/H1";
 import ContactForm from "@/components/contact/ContactForm";
 import Image from "next/image";
 import FadeInOnView from "@/components/ui/FadeInOnView";
-import {
-   getWordpressContent,
-   getWordpressCoordonnees,
-} from "@/actions/getWordpressContent";
+import { getWordpressContent } from "@/actions/getWordpressContent";
+import { getWordpressCoordonnees } from "@/actions/getWordpressCoordonnees";
+import { getGlobalContentQuery } from "@/actions/queries/globalContentQuery";
 
 export const revalidate = 300;
 
+async function getContactPageData() {
+   return getWordpressContent({
+      query: getGlobalContentQuery("page"),
+      variables: { id: 82 },
+      rootField: "page",
+   });
+}
+
 export async function generateMetadata() {
-   const data = await getWordpressContent({ id: 82, type: "page" });
+   const data = await getContactPageData();
    const cleanDescription = (
-      data.seo.metaDesc || "Contactez votre cabinet infirmier à Colmar."
+      data.seo?.metaDesc || "Contactez votre cabinet infirmier à Colmar."
    )
       .replace(/[#*]/g, "")
       .slice(0, 160);
 
    return {
-      title: data.seo.title || `${data.title} - Infirmière 68000`,
+      title: data.seo?.title || `${data.title} - Infirmière 68000`,
       description: cleanDescription,
       openGraph: {
-         title: data.seo.title || `${data.title} - Infirmière 68000`,
+         title: data.seo?.title || `${data.title} - Infirmière 68000`,
          description: cleanDescription,
          url: "https://infirmiere68000.fr",
          type: "website",
@@ -32,7 +39,7 @@ export async function generateMetadata() {
 }
 
 export default async function ContactPage() {
-   const data = await getWordpressContent({ id: 82, type: "page" });
+   const data = await getContactPageData();
    const coords = await getWordpressCoordonnees();
 
    return (

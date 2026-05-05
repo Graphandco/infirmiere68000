@@ -1,11 +1,20 @@
 import H1 from "@/components/ui/H1";
 import Equipe from "@/components/cabinet/Equipe";
 import { getWordpressContent } from "@/actions/getWordpressContent";
+import { CABINET_CONTENT_QUERY } from "@/actions/queries/cabinetContentQuery";
 
 export const revalidate = 300;
 
+async function getCabinetPageData() {
+   return getWordpressContent({
+      query: CABINET_CONTENT_QUERY,
+      variables: { id: 39 },
+      rootField: "page",
+   });
+}
+
 export async function generateMetadata() {
-   const data = await getWordpressContent({ id: 39, type: "page" });
+   const data = await getCabinetPageData();
 
    const cleanDescription = (
       data.seo.metaDesc ||
@@ -28,7 +37,7 @@ export async function generateMetadata() {
 }
 
 export default async function CabinetPage() {
-   const data = await getWordpressContent({ id: 39, type: "page" });
+   const data = await getCabinetPageData();
 
    return (
       <section className="wrapper">
