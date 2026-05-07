@@ -6,7 +6,6 @@ import { Mail, Phone } from "lucide-react";
 
 export default function Hero({ hero, pageData }) {
    const heroImage = pageData?.homepage?.imageDuHero?.node;
-   console.log(pageData);
 
    return (
       <FadeInOnView className="wrapper flex flex-col sm:flex-row items-center gap-5 sm:gap-10 md:gap-20">
