@@ -1,19 +1,20 @@
 services:
    app:
+      platform: linux/amd64
       container_name: infirmiere68000
-      image: ghcr.io/graphandco/infirmiere68000:latest
-      # Sans ça, Docker réutilise l’ancienne image locale même si `latest` a été repoussé sur GHCR.
+      image: dockerhub.graphandco.com/infirmiere68000:latest
+      build:
+         context: .
+         dockerfile: Dockerfile
+         tags:
+            - dockerhub.graphandco.com/infirmiere68000:1.1.0
+            - dockerhub.graphandco.com/infirmiere68000:latest
+         args:
+            NEXT_PUBLIC_WP_GRAPHQL: ${NEXT_PUBLIC_WP_GRAPHQL}
+            NEXT_PUBLIC_MATOMO_URL: ${NEXT_PUBLIC_MATOMO_URL}
+            NEXT_PUBLIC_MATOMO_SITE_ID: ${NEXT_PUBLIC_MATOMO_SITE_ID}
       pull_policy: always
-      # build:
-      #    context: .
-      #    dockerfile: Dockerfile
-      #    args:
-      #       NEXT_PUBLIC_WP_GRAPHQL: ${NEXT_PUBLIC_WP_GRAPHQL}
-      #       NEXT_PUBLIC_MATOMO_URL: ${NEXT_PUBLIC_MATOMO_URL}
-      #       NEXT_PUBLIC_MATOMO_SITE_ID: ${NEXT_PUBLIC_MATOMO_SITE_ID}
       restart: unless-stopped
-      # ports:
-      #    - "3005:3005"
       env_file:
          - .env
       networks:
